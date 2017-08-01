@@ -24,13 +24,15 @@ module.exports = class PlatformFinder {
     platform(url) {
         let category = null;
         let startTime = moment();
-        if(url) {
+        if (url) {
+            if (!url.match(/^(https|http):\/\/{1}/))
+                url = `https://${url}` // Append the protocol name if absent
             let parsedURL = URL.parse(url);
             let matchingList = this.trie.get(parsedURL.hostname);
-            if(matchingList.length > 0) {
+            if (matchingList.length > 0) {
                 // Matching list: Subset of the urls starting from hostname
-                for(let categoryUrl of matchingList) {
-                    if(url.includes(categoryUrl)) {
+                for (let categoryUrl of matchingList) {
+                    if (url.includes(categoryUrl)) {
                         // Break when category url is part of the input url
                         category = this.categoryMap[categoryUrl];
                         break;

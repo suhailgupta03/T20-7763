@@ -57,6 +57,7 @@ module.exports = function () {
             var category = null;
             var startTime = moment();
             if (url) {
+                if (!url.match(/^(https|http):\/\/{1}/)) url = 'https://' + url; // Append the protocol name if absent
                 var parsedURL = URL.parse(url);
                 var matchingList = this.trie.get(parsedURL.hostname);
                 if (matchingList.length > 0) {
