@@ -29,7 +29,7 @@ module.exports = class PlatformFinder {
                 url = `https://${url}` // Append the protocol name if absent
             let parsedURL = URL.parse(url);
             let matchingList = this.trie.get(parsedURL.hostname);
-            if (matchingList.length > 0) {
+            if (matchingList && matchingList.length > 0) {
                 // Matching list: Subset of the urls starting from hostname
                 for (let categoryUrl of matchingList) {
                     if (url.includes(categoryUrl)) {

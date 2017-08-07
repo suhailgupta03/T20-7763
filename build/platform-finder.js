@@ -60,7 +60,7 @@ module.exports = function () {
                 if (!url.match(/^(https|http):\/\/{1}/)) url = 'https://' + url; // Append the protocol name if absent
                 var parsedURL = URL.parse(url);
                 var matchingList = this.trie.get(parsedURL.hostname);
-                if (matchingList.length > 0) {
+                if (matchingList && matchingList.length > 0) {
                     // Matching list: Subset of the urls starting from hostname
                     var _iteratorNormalCompletion2 = true;
                     var _didIteratorError2 = false;
